@@ -20,28 +20,17 @@ public class Item implements Serializable {
 	private Key key = null;
 	
 	private BlobKey blobkey = null;
-	private String blobkey_str = null;
 	private String title = null;
 	private Text description = null;
 	
-	//only for readdatabase
-	private String description_str = null;
-	
 	private String imgUrl = null;
 
-	//for readdatabase
 	public void setKey(Key key){
 		this.key = key;
 	}
 	
 	public void setBlobKey(BlobKey blobkey) {
 		this.blobkey = blobkey;
-		setBlobKeyStr(blobkey.getKeyString());
-	}
-	
-	public void setBlobKeyStr(String blobkey_str){
-		this.blobkey_str = blobkey_str;
-		this.blobkey = new BlobKey(blobkey_str);
 	}
 
 	public void setTitle(String title) {
@@ -50,10 +39,6 @@ public class Item implements Serializable {
 
 	public void setDescription(Text description) {
 		this.description = description;
-	}
-
-	public void setDescriptionStr(String description_str){
-		this.description_str = description_str;
 	}
 	
 	public void setImgUrl(String imgurl){
@@ -74,9 +59,6 @@ public class Item implements Serializable {
 		return this.blobkey;
 	}
 
-	public String getBlobKeyStr() {
-		return this.blobkey_str;
-	}
 
 	public String getTitle() {
 		return this.title;
@@ -86,9 +68,6 @@ public class Item implements Serializable {
 		return this.description;
 	}
 	
-	public String getDescriptionStr(){
-		return this.description_str;
-	}
 	
 	public String getImgUrl(){
 		return this.imgUrl;

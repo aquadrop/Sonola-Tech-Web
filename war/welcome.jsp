@@ -405,8 +405,8 @@ body {
 			<h2 class="featurette-heading">
 				<%=item.getTitle()%>
 			</h2>
-			<p class="lead"><%=item.getDescriptionStr().substring(0,
-					Math.min(item.getDescriptionStr().length(),200))%>...</p>
+			<p class="lead"><%=item.getDescription().getValue().substring(0,
+					Math.min(item.getDescription().getValue().length(),200))%>...</p>
 			<p><a class="btn btn-large btn-primary" href="#">View details &raquo;</a></p>
 			
 		</div>

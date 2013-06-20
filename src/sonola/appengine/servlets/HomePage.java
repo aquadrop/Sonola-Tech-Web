@@ -36,9 +36,8 @@ public class HomePage extends HttpServlet {
 		} catch (Exception e) {
 			session.setAttribute(
 					"servlet-error",
-					"Servlet: UploadItem" + "<br> " + "Error: "
-							+ e.getMessage()
-							+ request.getParameter("description"));
+					"Servlet: "+ HomePage.class.getSimpleName() + "<br> " + "Error: "
+							+ e.getMessage());
 			RequestDispatcher view = request
 					.getRequestDispatcher("/error/error-page.jsp");
 			try {

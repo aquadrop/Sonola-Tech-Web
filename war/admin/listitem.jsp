@@ -149,7 +149,7 @@ body {
 									<div>
 										<!-- show img, title, description -->
 										<a class="btn btn-small btn-primary details"
-											onClick="modal_show('<%=item.getImgUrl()%>','<%=item.getTitle()%>','<%=item.getDescriptionStr()%>')">Details</a>
+											onClick="modal_show('<%=item.getImgUrl()%>','<%=item.getTitle()%>','<%=item.getDescription().getValue()%>')">Details</a>
 									</div>
 								</td>
 								<td>
