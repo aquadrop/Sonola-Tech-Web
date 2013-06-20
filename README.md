@@ -1,5 +1,4 @@
 Sonola-Tech-Web
-
 ==================
 
 1. This is the project of constructing the web pages for Sonola, Inc. I serve as an software engineer and a cooperator.
