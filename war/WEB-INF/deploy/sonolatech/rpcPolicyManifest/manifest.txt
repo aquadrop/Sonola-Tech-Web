@@ -1,0 +1,3 @@
+# Module sonolatech
+# RPC service class, partial path of RPC policy file
+sonola.appengine.servlets.client.GreetingService, FF6FC872C9B0E2844AB019B9D6CC5275.gwt.rpc

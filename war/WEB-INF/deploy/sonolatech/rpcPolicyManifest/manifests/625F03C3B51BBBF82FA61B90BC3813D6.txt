@@ -1,0 +1,2 @@
+serviceClass: sonola.appengine.servlets.client.GreetingService
+path: FF6FC872C9B0E2844AB019B9D6CC5275.gwt.rpc

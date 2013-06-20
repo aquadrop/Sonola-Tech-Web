@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+
+
+	<!-- admin credentials -->
+	<context-param>
+		<param-name>adminUsername</param-name>
+		<param-value>admin</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>adminPassword</param-name>
+		<param-value>password</param-value>
+	</context-param>
+
+
+	<!-- Servlets -->
+
+	<servlet>
+		<servlet-name>greetServlet</servlet-name>
+		<servlet-class>sonola.appengine.servlets.server.GreetingServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>greetServlet</servlet-name>
+		<url-pattern>/sonolatech/greet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>adminLogin</servlet-name>
+		<servlet-class>sonola.appengine.admin.Login</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>adminLogin</servlet-name>
+		<url-pattern>/admin/Login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Welcome</servlet-name>
+		<servlet-class>sonola.appengine.admin.Welcome</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Welcome</servlet-name>
+		<url-pattern>/admin/Welcome</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UploadItem</servlet-name>
+		<servlet-class>sonola.appengine.admin.UploadItem</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UploadItem</servlet-name>
+		<url-pattern>/admin/UploadItem</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListItem</servlet-name>
+		<servlet-class>sonola.appengine.admin.ListItem</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ListItem</servlet-name>
+		<url-pattern>/admin/ListItem</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DeleteItem</servlet-name>
+		<servlet-class>sonola.appengine.admin.DeleteItem</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DeleteItem</servlet-name>
+		<url-pattern>/admin/DeleteItem</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HomePage</servlet-name>
+		<servlet-class>sonola.appengine.servlets.HomePage</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>HomePage</servlet-name>
+		<url-pattern>/HomePage</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>HomePage</welcome-file>
+	</welcome-file-list>
+
+	<!-- Encoding -->
+	<!-- <filter> <filter-name>charsetEncodingFilter</filter-name> <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
+		<init-param> <param-name>encoding</param-name> <param-value>UTF-8</param-value> 
+		</init-param> </filter> <filter-mapping> <filter-name>charsetEncodingFilter</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+
+</web-app>

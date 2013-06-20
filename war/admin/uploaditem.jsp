@@ -1,0 +1,185 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.google.appengine.api.blobstore.BlobstoreService"%>
+<%@ page
+	import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
+
+<%
+	BlobstoreService blobstoreService = BlobstoreServiceFactory
+			.getBlobstoreService();
+%>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sonola &middot; Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Le styles -->
+<link href="../assets/css/bootstrap.css" rel="stylesheet">
+<link href="../assets/js/google-code-prettify/prettify.css"
+	rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+@media ( max-width : 980px) { /* Enable use of floated navbar text */
+	.navbar-text.pull-right {
+		float: none;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,#footer {
+	height: 60px;
+}
+
+#footer {
+	background-color: #f5f5f5;
+}
+</style>
+<link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="../assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="../assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="../assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="../assets/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="../assets/ico/favicon.png">
+</head>
+
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">Sonola</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="/public/contact.jsp">Contact</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">Operations</li>
+						<li><a href="/admin/Welcome">Home</a></li>
+						<li class="active"><a href="/admin/UploadItem">Upload
+								Item</a></li>
+						<li><a href="/admin/ListItem">List Items</a></li>
+					</ul>
+				</div>
+				<!--/.well -->
+			</div>
+			<!--/span-->
+			<div class="span9">
+				<div class="hero-unit">
+					<h2>Upload the image of the item</h2>
+					<form action="<%=blobstoreService.createUploadUrl("/admin/UploadItem")%>"
+						method="post" enctype="multipart/form-data">
+						<input type="file" name="myFile" accept="image/*">
+						<br>
+						<input type="text" name="title" class="input-block-level"
+							placeholder="Item Title">
+						<br>
+						<textarea rows="20" name="description" class="input-block-level" placeholder="Item Description"></textarea>
+						<br>
+						<p>
+							<button class="btn btn-primary btn-large" type="submit">Submit
+								&raquo;</button>
+							<button class="btn btn-primary btn-large" type="reset">Reset
+								&raquo;</button>
+						</p>
+					</form>
+
+				</div>
+			</div>
+			<!--/row-->
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+
+	<hr>
+
+	<!-- /container -->
+	<div id="wrap">
+
+		<div id="footer">
+			<div class="container">
+				<p class="muted credit">
+					&copy; 2013 <a href="/">Sonola, Inc</a> &middot; <a href="#">Terms</a>.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="../assets/js/jquery.js"></script>
+	<script src="../assets/js/bootstrap-transition.js"></script>
+	<script src="../assets/js/bootstrap-alert.js"></script>
+	<script src="../assets/js/bootstrap-modal.js"></script>
+	<script src="../assets/js/bootstrap-dropdown.js"></script>
+	<script src="../assets/js/bootstrap-scrollspy.js"></script>
+	<script src="../assets/js/bootstrap-tab.js"></script>
+	<script src="../assets/js/bootstrap-tooltip.js"></script>
+	<script src="../assets/js/bootstrap-popover.js"></script>
+	<script src="../assets/js/bootstrap-button.js"></script>
+	<script src="../assets/js/bootstrap-collapse.js"></script>
+	<script src="../assets/js/bootstrap-carousel.js"></script>
+	<script src="../assets/js/bootstrap-typeahead.js"></script>
+	<script src="../assets/js/google-code-prettify/prettify.js"></script>
+	<script src="../assets/js/bootstrap-fileupload.js"></script>
+	<script src="../assets/js/nice_file_field.js"></script>
+
+</body>
+</html>
