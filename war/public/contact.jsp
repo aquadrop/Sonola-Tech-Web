@@ -126,7 +126,7 @@ style>html,body,#map-canvas {
 				<a class="brand" href="#">Sonola</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a href="#">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li><a href="#about">About</a></li>
 						<li class="active"><a href="/public/contact.jsp">Contact</a></li>
 					</ul>

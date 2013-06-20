@@ -405,10 +405,15 @@ body {
 			<h2 class="featurette-heading">
 				<%=item.getTitle()%>
 			</h2>
-			<p class="lead"><%=item.getDescription().getValue().substring(0,
-					Math.min(item.getDescription().getValue().length(),200))%>...</p>
-			<p><a class="btn btn-large btn-primary" href="#">View details &raquo;</a></p>
-			
+			<p class="lead" lang="latex"><%=item.getDescription().getValue().substring(0,
+					Math.min(item.getDescription().getValue().length(),200))%>...
+			</p>
+
+			<p>
+				<a class="btn btn-large btn-primary" href="#">View details
+					&raquo;</a>
+			</p>
+
 		</div>
 		<hr class="featurette-divider">
 		<%}%>
@@ -483,5 +488,9 @@ body {
 		}(window.jQuery)
 	</script>
 	<script src="./assets/js/holder/holder.js"></script>
+	<script type="text/javascript"
+		src="http://latex.codecogs.com/latexit.js">
+		
+	</script>
 </body>
 </html>

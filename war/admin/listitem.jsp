@@ -284,6 +284,9 @@ body {
 	<script src="../assets/js/bootstrap-collapse.js"></script>
 	<script src="../assets/js/bootstrap-carousel.js"></script>
 	<script src="../assets/js/bootstrap-typeahead.js"></script>
+	<script type="text/javascript"
+		src="http://latex.codecogs.com/latexit.js">
+	</script>
 
 </body>
 </html>
