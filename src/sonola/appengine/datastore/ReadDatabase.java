@@ -13,9 +13,13 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Text;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 
 public class ReadDatabase {
 
@@ -55,5 +59,35 @@ public class ReadDatabase {
 		CacheUtil.addtoCache(Constant.memcache_query_is_updated, false);
 		
 		return items;
+	}
+	
+	public Item queryItem(String keyId){
+		//first query the memcache
+		Item item = new Item();
+		
+		if (CacheUtil.getfromCache(keyId)!=null)
+			item = (Item)CacheUtil.getfromCache(keyId);
+		else
+		{
+			DatastoreService datastore = DatastoreServiceFactory
+					.getDatastoreService();
+			Key key = KeyFactory.createKey(Constant.entity_name,
+					Long.parseLong(keyId));
+
+			// deal with blobstore
+			Filter filter = new FilterPredicate(Entity.KEY_RESERVED_PROPERTY,
+					FilterOperator.EQUAL, key);
+			Query q = new Query(Constant.entity_name).setFilter(filter);
+			PreparedQuery pq = datastore.prepare(q);
+			Entity result = pq.asSingleEntity();
+			
+			item.setTitle((String)result.getProperty(Constant.table_title));
+			item.setDescription((Text)result.getProperty(Constant.table_description));
+			item.setImgUrl((String)result.getProperty(Constant.table_imgUrl));
+			
+			
+		}
+		
+		return item;
 	}
 }

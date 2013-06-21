@@ -405,12 +405,13 @@ body {
 			<h2 class="featurette-heading">
 				<%=item.getTitle()%>
 			</h2>
-			<p class="lead" lang="latex"><%=item.getDescription().getValue().substring(0,
+			<p class="lead"><%=item.getDescription().getValue().substring(0,
 					Math.min(item.getDescription().getValue().length(),200))%>...
 			</p>
 
 			<p>
-				<a class="btn btn-large btn-primary" href="#">View details
+				<a class="btn btn-large btn-primary" input type="submit"
+											name="keyId" href="/PresentItem?keyId=<%=item.getKey().getId()%>">View details
 					&raquo;</a>
 			</p>
 
@@ -488,9 +489,9 @@ body {
 		}(window.jQuery)
 	</script>
 	<script src="./assets/js/holder/holder.js"></script>
-	<script type="text/javascript"
+	<!-- <script type="text/javascript"
 		src="http://latex.codecogs.com/latexit.js">
 		
-	</script>
+	</script> -->
 </body>
 </html>

@@ -79,6 +79,16 @@
 		<servlet-name>DeleteItem</servlet-name>
 		<url-pattern>/admin/DeleteItem</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UpdateItem</servlet-name>
+		<servlet-class>sonola.appengine.admin.UpdateItem</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UpdateItem</servlet-name>
+		<url-pattern>/admin/UpdateItem</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>HomePage</servlet-name>
@@ -88,6 +98,16 @@
 	<servlet-mapping>
 		<servlet-name>HomePage</servlet-name>
 		<url-pattern>/HomePage</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PresentItem</servlet-name>
+		<servlet-class>sonola.appengine.servlets.PresentItem</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PresentItem</servlet-name>
+		<url-pattern>/PresentItem</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->

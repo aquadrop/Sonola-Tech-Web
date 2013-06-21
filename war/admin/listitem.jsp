@@ -2,25 +2,56 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="sonola.appengine.models.Item"%>
+<%@page import="com.google.appengine.api.blobstore.BlobstoreService"%>
+<%@ page
+	import="com.google.appengine.api.blobstore.BlobstoreServiceFactory"%>
 
+<%
+	BlobstoreService blobstoreService = BlobstoreServiceFactory
+			.getBlobstoreService();
+%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
+
 <script>
+	//this script is for "detail-modal" 
 	function modal_show(img_url, title, description) {
 		$(document).ready(function() {
 
 			$('#thumb_modal').attr("src", img_url);
 			$('textarea#title_modal').text(title);
 			$('textarea#description_modal').text(description);
-			$('#detailModal').modal('show');
+			$('#detailModal').modal('show')
 		});
 
 	}
 </script>
 
+<script>
+	//this script is for "update-modal" 
+	function update_modal_show(img_url, title, description) {
+		$(document).ready(function() {
+			$('#update_thumb_modal').attr("src", img_url);
+			$('textarea#update_title_modal').text(title);
+			$('textarea#update_description_modal').text(description);
+			$('#updateModal').modal('show')
+		});
+
+	}
+</script>
+
+<script>
+	$('#modal-form-submit').on('click', function(e) {
+		// We don't want this to act as a link so cancel the link action
+		e.preventDefault();
+
+		// Find form and submit it
+		$('#modal-form').submit();
+	});
+</script>
 <meta charset="utf-8">
 <title>Sonola &middot; Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -126,7 +157,7 @@ body {
 					<br>
 					<%
 						List<Item> items = (List<Item>) request.getAttribute("items");
-						if (items == null||items.size()==0) {
+						if (items == null || items.size() == 0) {
 					%>
 					<p class="lead">Empty List</p>
 					<%
@@ -154,8 +185,9 @@ body {
 								</td>
 								<td>
 									<div>
-										<a href="#updateModal" role="button"
-											class="btn btn-small btn-primary" data-toggle="modal">Update</a>
+										<!-- update img, title, description -->
+										<a class="btn btn-small btn-primary details"
+											onClick="update_modal_show('<%=item.getImgUrl()%>','<%=item.getTitle()%>','<%=item.getDescription().getValue()%>')">Update</a>
 									</div>
 								</td>
 								<td>
@@ -191,6 +223,7 @@ body {
 			</div>
 			<div class="modal-body">
 				<div class="container-fluid">
+
 					<div class="row-fluid">
 						<div class="span6">
 							<img id="thumb_modal" src="" alt="Thumbnail" width="288"
@@ -207,32 +240,58 @@ body {
 								id="description_modal" rows="5" cols="20"></textarea>
 						</div>
 					</div>
+
 				</div>
 
 			</div>
 			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button class="btn btn-primary" data-dismiss="modal"
+					aria-hidden="true">Close</button>
 			</div>
 
 		</div>
 
-		<div id="deleteModal" class="modal hide fade" tabindex="-1"
-			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+		<div id="updateModal" class="modal hide fade" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+			style="width:auto vertical-align: middle">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">×</button>
 				<h3 id="modalHeader">Details</h3>
 			</div>
 			<div class="modal-body">
-				<img src="" alt="Thumbnail">
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span6">
+							<img id="update_thumb_modal" src="" alt="Thumbnail" width="288"
+								height="288">
+						</div>
+						<div class="span6"
+							style="padding-left: 15px; border-left: 1px solid #ccc;">
+							<form id="modal-form" action="UpdateItem" method="post"
+								enctype="multipart/form-data">
+								<input type="file" name="update_myFile" accept="image/*">
+								<br> <input type="text" name="update_title"
+									class="input-block-level" placeholder="Item Title"> <br>
+								<textarea rows="20" name="update_description"
+									class="input-block-level" placeholder="Item Description"></textarea>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<a id="modal-form-submit" class='btn btn-primary'>Submit</a>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 			</div>
+
+
 
 		</div>
 
-		<div id="updateModal" class="modal hide fade" tabindex="-1"
+		<div id="deleteModal" class="modal hide fade" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
@@ -284,9 +343,7 @@ body {
 	<script src="../assets/js/bootstrap-collapse.js"></script>
 	<script src="../assets/js/bootstrap-carousel.js"></script>
 	<script src="../assets/js/bootstrap-typeahead.js"></script>
-	<script type="text/javascript"
-		src="http://latex.codecogs.com/latexit.js">
-	</script>
+
 
 </body>
 </html>
